@@ -209,7 +209,22 @@
 
   /* ---------- Footer ---------- */
   footer.site { background: var(--alt); border-top: 1px solid var(--line); }
-  footer.site .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-block: 28px; font-size: 14px; color: var(--muted); }
+  .footer-main { display: flex; flex-wrap: wrap; gap: 40px 56px; padding-block: 64px 48px; }
+  .footer-brand { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+  .footer-brand p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--body); max-width: 340px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--outline); display: flex; align-items: center; justify-content: center; color: var(--text); transition: border-color .2s, color .2s; }
+  .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-col { flex: 1 1 160px; min-width: 0; }
+  .footer-col h4 { margin: 0 0 16px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col li, .footer-col a, .footer-col address { font-size: 15px; line-height: 1.5; color: var(--muted); text-decoration: none; font-style: normal; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom { border-top: 1px solid var(--line); }
+  .footer-bottom .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; padding-block: 22px; font-size: 14px; color: var(--muted); }
+  .footer-bottom a { color: var(--text); font-weight: 600; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--kicker); }
+  .footer-social a:focus-visible, .footer-col a:focus-visible, .footer-bottom a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -641,9 +656,59 @@
 </main>
 
 <footer class="site">
-  <div class="container">
-    <span>© <span id="year">2026</span> Mr. Klin Trading and Services Corp.</span>
-    <span>Your one-stop shop in the South · Taguig City</span>
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a href="#home" class="brand" aria-label="Mr. Klin — back to top">
+        <div class="brand-mark" aria-hidden="true">MK</div>
+        <div class="brand-name">
+          <strong>MR. KLIN</strong>
+          <span>Trading &amp; Services Corp.</span>
+        </div>
+      </a>
+      <p>Your one-stop shop in the South for auto detailing, nano ceramic coating, mechanical services, body repair and paint.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/mrklintradingandservicescorp" target="_blank" rel="noopener" aria-label="Mr. Klin on Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/mr.klintrading" target="_blank" rel="noopener" aria-label="Mr. Klin on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="footer-col" aria-label="Footer">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Auto Detailing</a></li>
+        <li><a href="#ceramic">Nano Ceramic Coating</a></li>
+        <li><a href="#services">Mechanical Services</a></li>
+        <li><a href="#services">Body Repair &amp; Paint</a></li>
+        <li><a href="#services">Car Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><address>74 M.L Quezon St., Bagumbayan, Taguig City</address></li>
+        <li><a href="tel:09178805755">0917-880-5755</a></li>
+        <li><a href="tel:0288072457">02-8807-2457</a></li>
+        <li><a href="tel:09338667408">0933-866-7408 (Sundays)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© <span id="year">2026</span> Mr. Klin Trading and Services Corp. All rights reserved.</span>
+      <span>Powered by: <a href="https://multiplytalents.io/" target="_blank" rel="noopener">Multiply Talents</a></span>
+    </div>
   </div>
 </footer>
 
