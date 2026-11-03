@@ -150,9 +150,11 @@
   .grid { display: flex; flex-wrap: wrap; gap: 20px; }
   .car-card { flex: 1 1 340px; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform .2s; }
   .car-card:hover { transform: translateY(-3px); }
-  .car-art { background: var(--panel); padding: 28px 20px 8px; }
-  .car-art svg { width: 100%; height: auto; }
-  .car-shadow { opacity: var(--car-shadow); }
+  .car-art { background: var(--panel); aspect-ratio: 16 / 10; overflow: hidden; }
+  .car-art img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .car-card:hover .car-art img { transform: scale(1.04); }
+  .photo-credits { margin: 20px 0 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
+  .photo-credits a { color: inherit; }
   .car-info { padding: 20px 24px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .car-info h3 { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 700; font-size: 20px; }
   .car-info span { font-size: 14px; color: var(--muted); }
@@ -337,16 +339,7 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Pearl white sedan">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M20,118 L22,100 Q24,90 40,88 L110,84 Q140,58 170,50 L250,48 Q280,50 305,80 L360,88 Q382,92 384,106 L384,120 Q384,126 376,126 L330,126 A30,30 0 0 0 270,126 L130,126 A30,30 0 0 0 70,126 L28,126 Q20,126 20,118 Z" fill="#ECEEF1"/>
-            <path d="M20,118 L22,100 Q24,90 40,88 L110,84 Q140,58 170,50 L250,48 Q280,50 305,80 L360,88 Q382,92 384,106 L384,120 Q384,126 376,126 L330,126 A30,30 0 0 0 270,126 L130,126 A30,30 0 0 0 70,126 L28,126 Q20,126 20,118 Z" fill="url(#shade)"/>
-            <path d="M118,84 Q144,62 172,56 L208,55 L208,84 Z M216,55 L248,54 Q272,56 292,82 L216,84 Z" fill="#141A22"/>
-            <path d="M40,96 L376,96" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="370" y="96" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="21" y="98" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="100" y="126"/><use href="#wheel" x="300" y="126"/>
-          </svg>
+          <img src="images/cars/sedan.jpg" width="800" height="500" alt="Silver Toyota Vios sedan" loading="lazy">
         </div>
         <div class="car-info"><div><h3>Sedans</h3><span>Interior detail from ₱4,000</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -354,16 +347,7 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Crimson hatchback">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M40,118 L42,72 Q44,56 64,54 L190,50 Q220,52 250,78 L330,90 Q356,94 358,108 L358,120 Q358,126 350,126 L320,126 A30,30 0 0 0 260,126 L140,126 A30,30 0 0 0 80,126 L48,126 Q40,126 40,118 Z" fill="#D2303C"/>
-            <path d="M40,118 L42,72 Q44,56 64,54 L190,50 Q220,52 250,78 L330,90 Q356,94 358,108 L358,120 Q358,126 350,126 L320,126 A30,30 0 0 0 260,126 L140,126 A30,30 0 0 0 80,126 L48,126 Q40,126 40,118 Z" fill="url(#shade)"/>
-            <path d="M56,82 L58,64 Q60,60 70,60 L130,58 L130,82 Z M138,58 L188,57 Q214,60 238,82 L138,82 Z" fill="#141A22"/>
-            <path d="M46,92 L352,98" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="344" y="98" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="41" y="72" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="110" y="126"/><use href="#wheel" x="290" y="126"/>
-          </svg>
+          <img src="images/cars/hatchback.jpg" width="800" height="500" alt="Red Toyota Wigo hatchback" loading="lazy">
         </div>
         <div class="car-info"><div><h3>Hatchbacks</h3><span>Interior detail from ₱4,000</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -371,16 +355,7 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Graphite SUV">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M24,118 L24,62 Q26,44 48,42 L250,40 Q270,40 288,60 L304,82 L360,88 Q380,90 382,106 L382,120 Q382,126 374,126 L332,126 A30,30 0 0 0 272,126 L132,126 A30,30 0 0 0 72,126 L32,126 Q24,126 24,118 Z" fill="#4E5663"/>
-            <path d="M24,118 L24,62 Q26,44 48,42 L250,40 Q270,40 288,60 L304,82 L360,88 Q380,90 382,106 L382,120 Q382,126 374,126 L332,126 A30,30 0 0 0 272,126 L132,126 A30,30 0 0 0 72,126 L32,126 Q24,126 24,118 Z" fill="url(#shade)"/>
-            <path d="M40,82 L40,58 Q42,50 52,50 L120,49 L120,82 Z M128,49 L196,48 L196,82 Z M204,48 L248,48 Q262,48 274,64 L286,82 L204,82 Z" fill="#141A22"/>
-            <path d="M28,94 L376,96" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="368" y="94" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="25" y="68" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="102" y="126"/><use href="#wheel" x="302" y="126"/>
-          </svg>
+          <img src="images/cars/suv.jpg" width="800" height="500" alt="Black Toyota Fortuner SUV" loading="lazy">
         </div>
         <div class="car-info"><div><h3>SUVs &amp; crossovers</h3><span>Full detailing, coating &amp; repair</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -388,16 +363,7 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Deep blue pickup truck">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M18,118 L18,80 L170,80 L172,52 Q174,42 188,42 L250,42 Q266,42 280,60 L298,84 L362,90 Q382,92 384,106 L384,120 Q384,126 376,126 L334,126 A30,30 0 0 0 274,126 L134,126 A30,30 0 0 0 74,126 L26,126 Q18,126 18,118 Z" fill="#2C5FC9"/>
-            <path d="M18,118 L18,80 L170,80 L172,52 Q174,42 188,42 L250,42 Q266,42 280,60 L298,84 L362,90 Q382,92 384,106 L384,120 Q384,126 376,126 L334,126 A30,30 0 0 0 274,126 L134,126 A30,30 0 0 0 74,126 L26,126 Q18,126 18,118 Z" fill="url(#shade)"/>
-            <path d="M184,82 L184,54 Q186,50 192,50 L224,50 L224,82 Z M232,50 L248,50 Q260,50 270,62 L284,82 L232,82 Z" fill="#141A22"/>
-            <path d="M22,90 L164,90 M176,96 L378,98" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="370" y="96" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="19" y="84" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="104" y="126"/><use href="#wheel" x="304" y="126"/>
-          </svg>
+          <img src="images/cars/pickup.jpg" width="800" height="500" alt="White Toyota Hilux pickup" loading="lazy">
         </div>
         <div class="car-info"><div><h3>Pickups</h3><span>Underchassis &amp; rustproofing</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -405,16 +371,7 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Silver van">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M20,118 L20,46 Q22,30 44,30 L280,30 Q300,30 314,50 L340,82 L366,88 Q382,92 382,106 L382,120 Q382,126 374,126 L334,126 A30,30 0 0 0 274,126 L130,126 A30,30 0 0 0 70,126 L28,126 Q20,126 20,118 Z" fill="#BFC4CB"/>
-            <path d="M20,118 L20,46 Q22,30 44,30 L280,30 Q300,30 314,50 L340,82 L366,88 Q382,92 382,106 L382,120 Q382,126 374,126 L334,126 A30,30 0 0 0 274,126 L130,126 A30,30 0 0 0 70,126 L28,126 Q20,126 20,118 Z" fill="url(#shade)"/>
-            <path d="M36,76 L36,46 Q36,40 44,40 L120,40 L120,76 Z M128,40 L210,40 L210,76 Z M218,40 L282,40 Q294,40 304,54 L320,78 L218,78 Z" fill="#141A22"/>
-            <path d="M24,92 L376,94" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="368" y="94" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="21" y="58" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="100" y="126"/><use href="#wheel" x="304" y="126"/>
-          </svg>
+          <img src="images/cars/van.jpg" width="800" height="500" alt="White Toyota Innova Zenix MPV" loading="lazy">
         </div>
         <div class="car-info"><div><h3>Vans &amp; MPVs</h3><span>Interior detail up to ₱6,000</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -422,22 +379,14 @@
 
       <article class="car-card">
         <div class="car-art">
-          <svg viewBox="0 0 400 165" role="img" aria-label="Yellow sports coupe">
-            <ellipse class="car-shadow" cx="200" cy="151" rx="186" ry="7" fill="#000"/>
-            <path d="M18,116 Q18,104 34,100 L120,92 Q160,64 200,60 L250,60 Q290,64 320,90 L368,98 Q386,102 386,114 L386,120 Q386,126 378,126 L332,126 A30,30 0 0 0 272,126 L128,126 A30,30 0 0 0 68,126 L26,126 Q18,126 18,116 Z" fill="#F2B705"/>
-            <path d="M18,116 Q18,104 34,100 L120,92 Q160,64 200,60 L250,60 Q290,64 320,90 L368,98 Q386,102 386,114 L386,120 Q386,126 378,126 L332,126 A30,30 0 0 0 272,126 L128,126 A30,30 0 0 0 68,126 L26,126 Q18,126 18,116 Z" fill="url(#shade)"/>
-            <path d="M130,92 Q166,68 204,66 L238,66 L238,92 Z M246,66 L252,66 Q284,70 308,90 L246,92 Z" fill="#141A22"/>
-            <path d="M36,106 L372,108" fill="none" stroke="#FFF" opacity="0.3" stroke-width="1.5"/>
-            <rect x="372" y="102" width="12" height="6" rx="3" fill="#FFF4D6"/>
-            <rect x="19" y="104" width="8" height="7" rx="2" fill="#E2382F"/>
-            <use href="#wheel" x="98" y="126"/><use href="#wheel" x="302" y="126"/>
-          </svg>
+          <img src="images/cars/coupe.jpg" width="800" height="500" alt="Red Toyota GR86 sports coupe" loading="lazy">
         </div>
         <div class="car-info"><div><h3>Sports &amp; coupes</h3><span>PPF, tint &amp; ceramic coating</span></div>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </article>
 
     </div>
+    <p class="photo-credits">Vehicle photos via Wikimedia Commons: sedan, hatchback by Ethan Llamas; SUV, MPV by Andra Febrian; pickup by EurovisionNim (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>); coupe by Mr.choppers (<a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>). Cropped from the originals.</p>
   </div>
 </section>
 
