@@ -194,8 +194,10 @@
 
   /* ---------- Our work ---------- */
   .gallery { display: flex; flex-wrap: wrap; gap: 16px; }
-  .gallery figure { flex: 1 1 260px; min-width: 0; margin: 0; height: 240px; border-radius: 18px; overflow: hidden; }
-  .gallery img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery figure { position: relative; flex: 1 1 260px; min-width: 0; margin: 0; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--panel); }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .gallery figure:hover img { transform: scale(1.04); }
+  .gallery figure:not(.placeholder) figcaption { position: absolute; inset: auto 0 0 0; padding: 40px 18px 16px; color: #FFFFFF; background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0)); }
   /* Placeholder style — delete once real photos are in */
   .gallery figure.placeholder { background: var(--ph-bg); border: 1.5px dashed var(--ph-border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--muted); }
   .gallery figcaption { font-size: 14px; font-weight: 500; }
@@ -535,28 +537,11 @@
       </div>
       <a href="https://www.instagram.com/mr.klintrading" class="btn btn-ghost" target="_blank" rel="noopener">See more on Instagram</a>
     </div>
-    <!--
-      TO ADD YOUR REAL PHOTOS: put them in an "images" folder next to this file,
-      then replace each placeholder <figure> with:
-        <figure><img src="images/work-1.jpg" alt="Short description of the job" loading="lazy"></figure>
-    -->
     <div class="gallery">
-      <figure class="placeholder">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <figcaption>Project photo 1</figcaption>
-      </figure>
-      <figure class="placeholder">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <figcaption>Project photo 2</figcaption>
-      </figure>
-      <figure class="placeholder">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <figcaption>Project photo 3</figcaption>
-      </figure>
-      <figure class="placeholder">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <figcaption>Project photo 4</figcaption>
-      </figure>
+      <figure><img src="images/work/work-1.jpg" width="560" height="700" alt="Freshly detailed bronze SUV with a mirror-gloss finish" loading="lazy"><figcaption>Exterior detail &amp; polish</figcaption></figure>
+      <figure><img src="images/work/work-2.jpg" width="560" height="700" alt="Underchassis of a vehicle on a lift after rustproof coating" loading="lazy"><figcaption>Underchassis &amp; rustproofing</figcaption></figure>
+      <figure><img src="images/work/work-3.jpg" width="560" height="700" alt="Technician's gauges connected to an SUV's aircon system" loading="lazy"><figcaption>Aircon service</figcaption></figure>
+      <figure><img src="images/work/work-4.jpg" width="560" height="700" alt="Van interior with dashboard removed for wiring repair" loading="lazy"><figcaption>Dashboard &amp; wiring repair</figcaption></figure>
     </div>
   </div>
 </section>
