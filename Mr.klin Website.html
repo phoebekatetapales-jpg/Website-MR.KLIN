@@ -132,7 +132,9 @@
   .hero p.lead { max-width: 520px; font-size: 18px; line-height: 1.6; color: var(--body); }
   .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
   .hero-art { flex: 1 1 520px; min-width: 0; }
-  .hero-art svg { width: 100%; height: auto; }
+  .hero-photo { position: relative; margin: 0; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 60px -24px rgba(0,0,0,.55); }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 50%; }
+  .hero-photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 6px; background: var(--accent); }
   .floor { opacity: var(--floor); }
 
   .stats {
@@ -306,18 +308,9 @@
       </div>
     </div>
     <div class="hero-art">
-      <svg viewBox="0 0 400 170" role="img" aria-label="Illustration of a sports coupe">
-        <ellipse class="floor" cx="200" cy="152" rx="200" ry="14" fill="url(#floorGlow)"/>
-        <path d="M18,116 Q18,104 34,100 L120,92 Q160,64 200,60 L250,60 Q290,64 320,90 L368,98 Q386,102 386,114 L386,120 Q386,126 378,126 L332,126 A30,30 0 0 0 272,126 L128,126 A30,30 0 0 0 68,126 L26,126 Q18,126 18,116 Z" style="fill: var(--accent)"/>
-        <path d="M18,116 Q18,104 34,100 L120,92 Q160,64 200,60 L250,60 Q290,64 320,90 L368,98 Q386,102 386,114 L386,120 Q386,126 378,126 L332,126 A30,30 0 0 0 272,126 L128,126 A30,30 0 0 0 68,126 L26,126 Q18,126 18,116 Z" fill="url(#shade)"/>
-        <path d="M130,92 Q166,68 204,66 L238,66 L238,92 Z M246,66 L252,66 Q284,70 308,90 L246,92 Z" fill="#141A22"/>
-        <path d="M150,86 Q176,72 200,70" fill="none" stroke="#FFFFFF" opacity="0.35" stroke-width="2" stroke-linecap="round"/>
-        <path d="M36,106 L372,108" fill="none" stroke="#FFFFFF" opacity="0.3" stroke-width="1.5"/>
-        <rect x="370" y="102" width="14" height="6" rx="3" fill="#FFF4D6"/>
-        <rect x="18" y="104" width="10" height="6" rx="3" fill="#E2382F"/>
-        <use href="#wheel" x="98" y="126"/>
-        <use href="#wheel" x="302" y="126"/>
-      </svg>
+      <figure class="hero-photo">
+        <img src="images/hero.jpg" width="1600" height="893" alt="Mr. Klin detailers machine-polishing and hand-drying a black sedan inside the shop" fetchpriority="high">
+      </figure>
     </div>
   </div>
   <div class="container">
