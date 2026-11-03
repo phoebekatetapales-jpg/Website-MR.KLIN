@@ -301,7 +301,11 @@
   .bk-total strong { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; }
   .bk-total span { display: block; font-size: 12px; color: var(--muted); }
   .bk-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-left: auto; }
-  .bk-send { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .bk-send { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .bk-done { display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 16px 18px; border-radius: 16px; background: color-mix(in srgb, #2FB36B 14%, transparent); color: #2FB36B; }
+  .bk-done div { display: flex; flex-direction: column; gap: 2px; color: var(--text); }
+  .bk-done strong { font-size: 16px; }
+  .bk-done span { font-size: 14px; color: var(--body); }
   .bk-note { margin: 14px 0 0; font-size: 13px; line-height: 1.55; color: var(--muted); }
   .bk-body :focus-visible, .bk-foot :focus-visible, .bk-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   @media (max-width: 560px) {
@@ -819,13 +823,19 @@
         <span class="bk-label">Your booking</span>
         <dl id="bkSummary"></dl>
       </div>
+      <input type="text" id="bkCompany" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <div class="bk-done" id="bkDone" role="status" hidden>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+        <div><strong>Booking received!</strong><span>We'll text or call you to confirm your slot and final price.</span></div>
+      </div>
       <div id="bkSendWrap" hidden>
+        <p class="bk-note" id="bkSendIntro" style="margin-top:18px"></p>
         <div class="bk-send">
           <a class="btn btn-primary" id="bkMessenger" target="_blank" rel="noopener">Send via Messenger</a>
           <a class="btn btn-ghost" id="bkSms">Send via SMS</a>
           <button type="button" class="btn btn-ghost" id="bkCopy">Copy details</button>
         </div>
-        <p class="bk-note">Your request goes straight to the Mr. Klin team. We'll confirm your slot and final price by message or call. Prefer to talk? Call <a href="tel:09178805755">0917-880-5755</a>.</p>
+        <p class="bk-note">Prefer to talk? Call <a href="tel:09178805755">0917-880-5755</a>.</p>
       </div>
     </section>
     <p class="bk-error" id="bkError" role="alert" hidden></p>
@@ -850,6 +860,7 @@
   (function () {
     var SHOP_SMS = '09178805755';
     var SHOP_MESSENGER = 'https://m.me/mrklintradingandservicescorp';
+    var BOOKINGS_API = 'https://mr-klin.vercel.app/api/bookings'; // shows up on the Mr. Klin dashboard
     var BOOK_AHEAD_DAYS = 60;
     var TIMES = ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
 
@@ -1020,7 +1031,7 @@
     });
 
     // ----- Step navigation -----
-    var NEXT_LABELS = ['Next: pick a date', 'Next: your details', 'Review & send'];
+    var NEXT_LABELS = ['Next: pick a date', 'Next: your details', 'Confirm booking'];
     function showError(msg) { $('bkError').textContent = msg; $('bkError').hidden = !msg; }
     function validate() {
       if (state.step === 0) {
@@ -1046,7 +1057,9 @@
       $('bkBack').hidden = step === 0;
       $('bkNextStep').textContent = NEXT_LABELS[step];
       $('bkNextStep').hidden = false;
+      $('bkNextStep').disabled = false;
       $('bkSendWrap').hidden = true;
+      $('bkDone').hidden = true;
       showError('');
       if (step === 1) { renderCalendar(); renderTimes(); }
       if (step === 2) renderSummary();
@@ -1056,17 +1069,51 @@
       var err = validate(); showError(err); if (err) return;
       if (state.step < 2) return go(state.step + 1);
       renderSummary();
-      var text = encodeURIComponent(message());
+      var btn = this, text = encodeURIComponent(message());
       $('bkMessenger').href = SHOP_MESSENGER + '?text=' + text;
       $('bkSms').href = 'sms:' + SHOP_SMS + '?&body=' + text;
-      $('bkSendWrap').hidden = false;
-      $('bkNextStep').hidden = true;
-      $('bkMessenger').focus();
+      btn.disabled = true; btn.textContent = 'Sending…';
+      submitBooking().then(function () {
+        $('bkDone').hidden = false;
+        $('bkSendIntro').textContent = 'Want a faster reply? You can also send these details to us directly:';
+        $('bkSendWrap').hidden = false;
+        btn.hidden = true; $('bkBack').hidden = true;
+        $('bkDone').scrollIntoView({ block: 'nearest' });
+      }, function () {
+        // Couldn't reach the booking system: fall back to sending it by message
+        $('bkSendIntro').textContent = "We couldn't save your booking online just now. Please send it to us with one tap instead:";
+        $('bkSendWrap').hidden = false;
+        btn.hidden = true;
+        $('bkMessenger').focus();
+      });
     });
+    function submitBooking() {
+      var e = estimate(), mobile = $('bkMobile').checked;
+      return fetch(BOOKINGS_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ownerName: $('bkName').value.trim(),
+          phone: $('bkPhone').value.trim(),
+          vehicleType: vehicle().label,
+          vehicle: $('bkCar').value.trim() || vehicle().label,
+          plate: $('bkPlate').value.trim(),
+          services: chosen().map(function (s) { return s.name; }),
+          date: state.date.getFullYear() + '-' + String(state.date.getMonth() + 1).padStart(2, '0') + '-' + String(state.date.getDate()).padStart(2, '0'),
+          slot: state.time,
+          location: mobile ? 'Home/office service — ' + $('bkAddr').value.trim() : 'At the shop',
+          estimate: (e.priced ? (e.from ? 'from ' : '') + peso(e.total) : 'For quote') + (e.quote.length ? ' + quote for ' + e.quote.join(', ') : ''),
+          notes: $('bkNotes').value.trim(),
+          company: $('bkCompany').value
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+      });
+    }
     $('bkBack').addEventListener('click', function () { go(state.step - 1); });
-    // Editing details after "Review & send" brings the button back so the message is rebuilt
+    // Editing details after a failed send brings the button back so the message is rebuilt
     dlg.querySelector('[data-step="2"] .bk-fields').addEventListener('input', function () {
-      if (!$('bkSendWrap').hidden) { $('bkSendWrap').hidden = true; $('bkNextStep').hidden = false; }
+      if (!$('bkSendWrap').hidden && $('bkDone').hidden) { $('bkSendWrap').hidden = true; $('bkNextStep').hidden = false; $('bkNextStep').disabled = false; $('bkNextStep').textContent = NEXT_LABELS[2]; }
     });
 
     // ----- Open / close -----
