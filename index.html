@@ -361,7 +361,7 @@
     </a>
     <nav class="main" aria-label="Main">
       <a href="#home" class="active">Home</a>
-      <a href="#about">About us</a>
+      <a href="about.html">About us</a>
       <a href="#services">Services</a>
       <a href="#work">Our Work</a>
       <a href="#contact">Contact Us</a>
@@ -688,7 +688,7 @@
       <h4>Company</h4>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">About us</a></li>
+        <li><a href="about.html">About us</a></li>
         <li><a href="#work">Our Work</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ul>
@@ -741,7 +741,7 @@
 
     // Highlight the nav link for the section on screen
     var links = document.querySelectorAll('nav.main a');
-    var map = { home: 0, about: 1, services: 2, packages: 2, ceramic: 2, work: 3, contact: 4 };
+    var map = { home: 0, about: 0, services: 2, packages: 2, ceramic: 2, work: 3, contact: 4 };
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -1123,6 +1123,8 @@
     dlg.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
     renderPrices();
+    // Other pages link to index.html#book to open the booking straight away
+    if (location.hash === '#book') { go(0); dlg.showModal(); history.replaceState(null, '', location.pathname); }
   })();
 </script>
 </body>
