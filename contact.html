@@ -407,6 +407,43 @@
   .visit-addr { font-style: normal; font-size: 19px; font-weight: 600; color: var(--text); }
   .map-wrap { flex: 1 1 520px; min-width: 0; min-height: 360px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
   .map-wrap iframe { display: block; width: 100%; height: 100%; min-height: 360px; border: 0; }
+  .svc-jump button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--outline); background: var(--card); color: var(--text); font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; }
+  .svc-jump button small { font-size: 12px; color: var(--muted); }
+  .svc-jump button:hover { border-color: var(--accent); }
+  .svc-jump button.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .svc-jump button.on small { color: var(--on-accent); opacity: .75; }
+  .svc-jump button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .gal-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+  .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); grid-auto-rows: 300px; grid-auto-flow: dense; gap: 16px; }
+  .gal-item { position: relative; padding: 0; border: 0; border-radius: 18px; overflow: hidden; background: var(--panel); cursor: zoom-in; text-align: left; }
+  .gal-item.wide { grid-column: span 2; }
+  .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .gal-item:hover img { transform: scale(1.05); }
+  .gal-item:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .gal-cap { position: absolute; inset: auto 0 0 0; display: flex; flex-direction: column; gap: 2px; padding: 44px 18px 16px; color: #FFFFFF; font-size: 15px; font-weight: 600; background: linear-gradient(to top, rgba(0,0,0,.8), rgba(0,0,0,0)); }
+  .gal-cap small { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #FFB08F; }
+  .gal-empty { margin: 24px 0 0; color: var(--muted); }
+  dialog.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(6,8,10,.94); color: #FFFFFF; }
+  dialog.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+  dialog.lightbox::backdrop { background: rgba(6,8,10,.6); }
+  .lb-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; max-width: min(1100px, calc(100vw - 140px)); }
+  .lb-figure img { max-width: 100%; max-height: calc(100dvh - 140px); width: auto; height: auto; border-radius: 14px; }
+  .lb-figure figcaption { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+  .lb-figure strong { font-size: 17px; }
+  .lb-figure span { font-size: 13px; color: #A3A9B3; }
+  .lb-btn { position: absolute; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .lb-btn:hover { background: rgba(255,255,255,.18); }
+  .lb-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .lb-btn[hidden] { display: none; }
+  .lb-close { top: 18px; right: 18px; }
+  .lb-prev { left: 18px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 18px; top: 50%; transform: translateY(-50%); }
+  @media (max-width: 560px) {
+    .gal-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; gap: 10px; }
+    .gal-cap { padding: 30px 12px 10px; font-size: 13px; }
+    .lb-figure { max-width: calc(100vw - 24px); }
+    .lb-prev, .lb-next { top: auto; bottom: 18px; transform: none; }
+  }
   @media (max-width: 760px) { .svc-row.reverse { flex-direction: row; } .svc-photo, .svc-panel { max-width: none; aspect-ratio: 4 / 3; } }
 
   @media (prefers-reduced-motion: reduce) {
@@ -453,7 +490,7 @@
       <a href="index.html">Home</a>
       <a href="about.html">About us</a>
       <a href="services.html">Services</a>
-      <a href="index.html#work">Our Work</a>
+      <a href="work.html">Our Work</a>
       <a href="contact.html" class="active" aria-current="page">Contact Us</a>
     </nav>
     <div class="nav-actions">
@@ -671,7 +708,7 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About us</a></li>
-        <li><a href="index.html#work">Our Work</a></li>
+        <li><a href="work.html">Our Work</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
