@@ -216,6 +216,7 @@
   .contact-card .label { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   .contact-card a.num, .contact-card address { font-size: 17px; line-height: 1.5; color: var(--text); text-decoration: none; font-style: normal; padding: 4px 0; }
   .contact-card a.num:hover { color: var(--kicker); }
+  .contact-card a.num[href^="mailto:"], .footer-email { overflow-wrap: anywhere; }
   .contact-card a.dir { font-size: 15px; font-weight: 600; text-decoration: none; padding: 6px 0; }
 
   /* ---------- Footer ---------- */
@@ -398,6 +399,7 @@
   .reach-card .label { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   .reach-card strong { font-family: "Archivo", sans-serif; font-stretch: 108%; font-size: 20px; font-weight: 700; }
   .reach-card small { font-size: 14px; color: var(--muted); }
+  .reach-card .reach-email { font-size: 16px; overflow-wrap: anywhere; }
   .msg-form { flex: 2 1 520px; min-width: 0; padding: clamp(20px, 3vw, 32px); border-radius: 24px; background: var(--card); border: 1px solid var(--line); }
   .bk-field select { width: 100%; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--outline); background: var(--cell); color: var(--text); font: inherit; font-size: 16px; }
   .bk-field select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
@@ -512,6 +514,12 @@
         <strong>0933-866-7408</strong>
         <small>For calls on Sundays</small>
       </a>
+      <a class="reach-card" href="mailto:mrklintradingservicescorp@gmail.com">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div>
+        <span class="label">Email</span>
+        <strong class="reach-email">mrklintradingservicescorp@gmail.com</strong>
+        <small>Send us your questions anytime</small>
+      </a>
       <a class="reach-card" href="https://m.me/mrklintradingandservicescorp" target="_blank" rel="noopener">
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
         <span class="label">Messenger</span>
@@ -540,7 +548,7 @@
     <div class="faq-copy">
       <span class="kicker">Send us a message</span>
       <h2 class="title display">Ask us anything.</h2>
-      <p class="svc-lead">Fill this in and send it to us with one tap by Messenger or SMS. We'll reply as soon as we can. Want to book a slot instead? Use <button type="button" class="link-btn" data-book>our booking form</button>.</p>
+      <p class="svc-lead">Fill this in and send it to us with one tap by Messenger, SMS or email. We'll reply as soon as we can. Want to book a slot instead? Use <button type="button" class="link-btn" data-book>our booking form</button>.</p>
     </div>
     <form class="msg-form" id="msgForm" novalidate>
       <div class="bk-fields">
@@ -565,6 +573,7 @@
       <div class="cta-row" style="margin-top:18px">
         <button type="submit" class="btn btn-primary" data-send="messenger">Send via Messenger</button>
         <button type="submit" class="btn btn-ghost" data-send="sms">Send via SMS</button>
+        <button type="submit" class="btn btn-ghost" data-send="email">Send via Email</button>
       </div>
     </form>
   </div>
@@ -633,10 +642,10 @@
         '',
         $('msgText').value.trim()
       ].join('\n');
-      var url = sendVia === 'sms'
+      if (sendVia === 'messenger') return window.open('https://m.me/mrklintradingandservicescorp?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      location.href = sendVia === 'sms'
         ? 'sms:09178805755?&body=' + encodeURIComponent(text)
-        : 'https://m.me/mrklintradingandservicescorp?text=' + encodeURIComponent(text);
-      if (sendVia === 'sms') location.href = url; else window.open(url, '_blank', 'noopener');
+        : 'mailto:mrklintradingservicescorp@gmail.com?subject=' + encodeURIComponent('Website inquiry: ' + $('msgTopic').value) + '&body=' + encodeURIComponent(text);
     });
   })();
 </script>
@@ -683,6 +692,7 @@
         <li><a href="tel:09178805755">0917-880-5755</a></li>
         <li><a href="tel:0288072457">02-8807-2457</a></li>
         <li><a href="tel:09338667408">0933-866-7408 (Sundays)</a></li>
+        <li><a href="mailto:mrklintradingservicescorp@gmail.com" class="footer-email">mrklintradingservicescorp@gmail.com</a></li>
       </ul>
     </div>
   </div>
