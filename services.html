@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services | Mr. Klin Trading and Services Corp.</title>
+<meta name="description" content="Auto detailing, nano ceramic coating, tint and PPF, underchassis rustproofing, preventive maintenance, aircon, body repair and paint, and car accessories in Taguig City.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Inter:wght@400;500;600&display=swap">
+<script>
+  // Apply the saved theme before the page paints (avoids a flash of the wrong theme).
+  (function () {
+    var theme = 'dark';
+    try {
+      var saved = localStorage.getItem('mrklin-theme');
+      if (saved === 'dark' || saved === 'light') theme = saved;
+      else if (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+    } catch (e) {}
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+  /* ---------- Theme tokens ---------- */
+  :root {
+    --accent: #FF5A1F;
+    --on-accent: #0B0D10;
+  }
+  [data-theme="dark"] {
+    --base: #0B0D10; --alt: #111418; --card: #181C22; --panel: #1E232B; --cell: #12151A;
+    --text: #FFFFFF; --muted: #A3A9B3; --body: #B8BDC6; --nav-link: #C9CDD4;
+    --line: rgba(255,255,255,0.08); --outline: rgba(255,255,255,0.24);
+    --ph-bg: #181C22; --ph-border: rgba(255,255,255,0.22);
+    --kicker: var(--accent);
+    --cer-bg: radial-gradient(ellipse at 50% 70%, #232A35 0%, #0B0D10 70%);
+    --glow: 0.10; --floor: 1; --car-shadow: 0.45;
+    --feat-bg: #1E232B; --feat-border: var(--accent);
+    color-scheme: dark;
+  }
+  [data-theme="light"] {
+    --base: #FFFFFF; --alt: #F4F4F1; --card: #FFFFFF; --panel: #ECEDE9; --cell: #F7F7F4;
+    --text: #15181D; --muted: #5A616B; --body: #4A505A; --nav-link: #4A505A;
+    --line: #E3E3DE; --outline: rgba(21,24,29,0.28);
+    --ph-bg: #E9E9E4; --ph-border: #B9B9B2;
+    --kicker: #B93A0B;
+    --cer-bg: radial-gradient(ellipse at 50% 70%, #FFFFFF 0%, #E4E6E3 75%);
+    --glow: 0.14; --floor: 0.35; --car-shadow: 0.22;
+    --feat-bg: #15181D; --feat-border: rgba(255,255,255,0.14);
+    color-scheme: light;
+  }
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--base);
+    color: var(--text);
+    transition: background-color .3s, color .3s;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--kicker); }
+  img, svg { display: block; }
+  .container { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); }
+  .section { padding-block: clamp(64px, 8vw, 112px); }
+  .bg-base { background: var(--base); }
+  .bg-alt { background: var(--alt); }
+  .display { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; letter-spacing: -0.01em; }
+  .kicker { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--kicker); }
+  h1, h2, h3, p { margin: 0; }
+  h2.title { font-size: clamp(32px, 4vw, 52px); line-height: 1.05; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 48px; }
+  .section-head > div { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .section-head > p { flex: 1 1 320px; max-width: 420px; font-size: 16px; line-height: 1.65; color: var(--muted); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px;
+    border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; transition: transform .15s, opacity .15s;
+  }
+  :where(button).btn { border: 0; background: transparent; color: inherit; font-family: inherit; cursor: pointer; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { color: var(--on-accent); opacity: .92; }
+  .btn-ghost { border: 1px solid var(--outline); color: var(--text); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+  .btn-lg { min-height: 52px; padding: 0 26px; font-size: 16px; }
+
+  /* ---------- Header ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--base) 88%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; padding-block: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+  .brand-mark {
+    width: 44px; height: 44px; border-radius: 10px; background: var(--accent); color: var(--on-accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Archivo', sans-serif; font-stretch: 125%; font-weight: 900; font-size: 18px;
+  }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.1; }
+  .brand-name strong { font-family: 'Archivo', sans-serif; font-stretch: 125%; font-weight: 800; font-size: 18px; letter-spacing: .02em; }
+  .brand-name span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  nav.main { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; font-size: 15px; font-weight: 500; }
+  nav.main a { color: var(--nav-link); text-decoration: none; padding: 12px 0; }
+  nav.main a:hover, nav.main a.active { color: var(--text); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .theme-toggle {
+    width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--outline);
+    background: var(--card); color: var(--text); display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; padding: 0;
+  }
+  .theme-toggle:focus-visible, .btn:focus-visible, nav.main a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  [data-theme="dark"] .icon-moon, [data-theme="light"] .icon-sun { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; }
+  .hero-glow {
+    position: absolute; left: 50%; top: 58%; width: 1100px; height: 520px; transform: translate(-30%, -40%);
+    border-radius: 50%; background: var(--accent); opacity: var(--glow); filter: blur(120px); pointer-events: none;
+  }
+  .hero-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 48px; padding-top: clamp(48px, 8vw, 96px); padding-bottom: 40px; }
+  .hero-copy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+  .pill {
+    display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 8px 14px;
+    border: 1px solid var(--outline); border-radius: 999px; font-size: 13px; color: var(--body);
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .hero h1 { font-size: clamp(42px, 6vw, 80px); line-height: .98; letter-spacing: -0.02em; }
+  .hero p.lead { max-width: 520px; font-size: 18px; line-height: 1.6; color: var(--body); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hero-art { flex: 1 1 520px; min-width: 0; }
+  .hero-photo { position: relative; margin: 0; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 60px -24px rgba(0,0,0,.55); }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 45% 50%; }
+  .hero-photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 6px; background: var(--accent); }
+  .floor { opacity: var(--floor); }
+
+  .stats {
+    position: relative; display: flex; flex-wrap: wrap; gap: 1px; margin-bottom: 64px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  }
+  .stat { flex: 1 1 220px; background: var(--cell); padding: 24px 28px; display: flex; flex-direction: column; gap: 6px; }
+  .stat strong { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; font-size: 32px; }
+  .stat span { font-size: 14px; color: var(--muted); }
+
+  /* ---------- Car cards ---------- */
+  #about { border-top: 1px solid var(--line); }
+  .grid { display: flex; flex-wrap: wrap; gap: 20px; }
+  .car-card { flex: 1 1 340px; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; transition: transform .2s; }
+  .car-card:hover { transform: translateY(-3px); }
+  .car-art { background: var(--panel); aspect-ratio: 16 / 10; overflow: hidden; }
+  .car-art img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .car-card:hover .car-art img { transform: scale(1.04); }
+  .photo-credits { margin: 20px 0 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
+  .photo-credits a { color: inherit; }
+  .car-info { padding: 20px 24px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .car-info h3 { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 700; font-size: 20px; }
+  .car-info span { font-size: 14px; color: var(--muted); }
+  .car-info svg { color: var(--muted); flex: none; }
+
+  /* ---------- Services ---------- */
+  .service { flex: 1 1 220px; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+  .service-icon { width: 52px; height: 52px; border-radius: 14px; background: #15181D; border: 1px solid var(--line); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .service h3 { font-family: 'Archivo', sans-serif; font-stretch: 108%; font-weight: 700; font-size: 20px; line-height: 1.2; }
+  .service ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: var(--body); }
+  .service li { display: flex; align-items: center; gap: 10px; }
+  .service-more { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--kicker); text-decoration: none; }
+  .service-more:hover { text-decoration: underline; }
+  .service li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
+
+  /* ---------- Packages ---------- */
+  .package { flex: 1 1 250px; min-width: 0; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; background: var(--card); color: var(--text); border: 1px solid var(--line); }
+  .package.featured { background: var(--feat-bg); color: #FFFFFF; border-color: var(--feat-border); }
+  .package .pk { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+  .package h3 { font-family: 'Archivo', sans-serif; font-stretch: 108%; font-weight: 700; font-size: 22px; }
+  .price { display: flex; flex-direction: column; gap: 2px; }
+  .price small { font-size: 13px; opacity: .75; }
+  .price strong { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; font-size: 34px; letter-spacing: -0.01em; }
+  .package hr { border: 0; height: 1px; background: var(--line); margin: 0; }
+  .package.featured hr { background: rgba(255,255,255,0.14); }
+  .package ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.4; }
+  .package li { display: flex; align-items: flex-start; gap: 10px; }
+  .package li svg { flex: none; margin-top: 1px; }
+
+  /* ---------- Ceramic ---------- */
+  .ceramic-row { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; }
+  .ceramic-art { flex: 1 1 480px; min-width: 0; background: var(--cer-bg); border: 1px solid var(--line); border-radius: 24px; padding: 48px 24px 24px; }
+  .ceramic-art svg { width: 100%; height: auto; }
+  .ceramic-copy { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .ceramic-copy p { font-size: 17px; line-height: 1.65; color: var(--body); }
+  .benefits { display: flex; flex-wrap: wrap; gap: 12px; }
+  .benefit { flex: 1 1 200px; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-size: 15px; }
+  .benefit svg { flex: none; color: var(--kicker); }
+
+  /* ---------- Our work ---------- */
+  .gallery { display: flex; flex-wrap: wrap; gap: 16px; }
+  .gallery figure { position: relative; flex: 1 1 260px; min-width: 0; margin: 0; aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--panel); }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .gallery figure:hover img { transform: scale(1.04); }
+  .gallery figure:not(.placeholder) figcaption { position: absolute; inset: auto 0 0 0; padding: 40px 18px 16px; color: #FFFFFF; background: linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,0)); }
+  /* Placeholder style — delete once real photos are in */
+  .gallery figure.placeholder { background: var(--ph-bg); border: 1.5px dashed var(--ph-border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--muted); }
+  .gallery figcaption { font-size: 14px; font-weight: 500; }
+
+  /* ---------- Contact ---------- */
+  .contact-row { display: flex; flex-wrap: wrap; gap: 48px; }
+  .contact-copy { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .contact-copy p { font-size: 17px; line-height: 1.65; color: var(--body); }
+  .contact-cards { flex: 1 1 520px; min-width: 0; display: flex; flex-wrap: wrap; gap: 16px; }
+  .contact-card { flex: 1 1 240px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .contact-card .label { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .contact-card a.num, .contact-card address { font-size: 17px; line-height: 1.5; color: var(--text); text-decoration: none; font-style: normal; padding: 4px 0; }
+  .contact-card a.num:hover { color: var(--kicker); }
+  .contact-card a.dir { font-size: 15px; font-weight: 600; text-decoration: none; padding: 6px 0; }
+
+  /* ---------- Footer ---------- */
+  footer.site { background: var(--alt); border-top: 1px solid var(--line); }
+  .footer-main { display: flex; flex-wrap: wrap; gap: 40px 56px; padding-block: 64px 48px; }
+  .footer-brand { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+  .footer-brand p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--body); max-width: 340px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--outline); display: flex; align-items: center; justify-content: center; color: var(--text); transition: border-color .2s, color .2s; }
+  .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-col { flex: 1 1 160px; min-width: 0; }
+  .footer-col h4 { margin: 0 0 16px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text); }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col li, .footer-col a, .footer-col address { font-size: 15px; line-height: 1.5; color: var(--muted); text-decoration: none; font-style: normal; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-bottom { border-top: 1px solid var(--line); }
+  .footer-bottom .container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; padding-block: 22px; font-size: 14px; color: var(--muted); }
+  .footer-bottom a { color: var(--text); font-weight: 600; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--kicker); }
+  .footer-social a:focus-visible, .footer-col a:focus-visible, .footer-bottom a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* ---------- Booking & estimate dialog ---------- */
+  dialog.booking {
+    width: min(760px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0;
+    border: 1px solid var(--line); border-radius: 24px; background: var(--card); color: var(--text);
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,.5); overflow: hidden;
+  }
+  dialog.booking[open] { display: flex; flex-direction: column; }
+  dialog.booking [hidden] { display: none !important; }
+  dialog.booking::backdrop { background: rgba(6,8,10,.62); backdrop-filter: blur(4px); }
+  .bk-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 28px 0; }
+  .bk-head h2 { margin: 6px 0 0; font-size: clamp(24px, 4vw, 30px); }
+  .bk-close { width: 40px; height: 40px; flex: none; border-radius: 50%; border: 1px solid var(--outline); background: transparent; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .bk-steps { display: flex; gap: 8px; padding: 18px 28px 0; list-style: none; margin: 0; }
+  .bk-steps li { flex: 1; display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .bk-steps li::before { content: ""; height: 4px; border-radius: 4px; background: var(--line); }
+  .bk-steps li.done, .bk-steps li.current { color: var(--text); }
+  .bk-steps li.done::before, .bk-steps li.current::before { background: var(--accent); }
+  .bk-body { flex: 1; overflow-y: auto; padding: 22px 28px 8px; }
+  .bk-panel[hidden] { display: none; }
+  .bk-label { display: block; margin: 0 0 10px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .bk-group + .bk-group { margin-top: 22px; }
+  .bk-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bk-chip { position: relative; }
+  .bk-chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .bk-chip span { display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--outline); font-size: 14px; font-weight: 500; }
+  .bk-chip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .bk-chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .bk-services { display: flex; flex-wrap: wrap; gap: 10px; }
+  .bk-svc { position: relative; flex: 1 1 300px; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--cell); cursor: pointer; }
+  .bk-svc input { width: 18px; height: 18px; flex: none; accent-color: var(--accent); margin: 0; }
+  .bk-svc b { display: block; font-size: 15px; font-weight: 600; }
+  .bk-svc small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .bk-svc .amt { margin-left: auto; font-size: 14px; font-weight: 600; white-space: nowrap; color: var(--text); }
+  .bk-svc .amt.quote { color: var(--muted); font-weight: 500; }
+  .bk-svc:has(input:checked) { border-color: var(--accent); }
+  .bk-toggle { display: flex; align-items: center; gap: 12px; margin-top: 16px; font-size: 15px; cursor: pointer; }
+  .bk-toggle input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+  .bk-toggle small { color: var(--muted); }
+  .bk-cal { border: 1px solid var(--line); border-radius: 16px; padding: 14px; background: var(--cell); }
+  .bk-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .bk-cal-head strong { font-size: 16px; }
+  .bk-cal-nav { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--outline); background: transparent; color: var(--text); cursor: pointer; font-size: 18px; }
+  .bk-cal-nav:disabled { opacity: .3; cursor: default; }
+  .bk-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+  .bk-grid .dow { font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 0; }
+  .bk-day { height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; }
+  .bk-day:hover:not(:disabled) { background: var(--panel); }
+  .bk-day:disabled { color: var(--muted); opacity: .4; cursor: default; }
+  .bk-day.today { box-shadow: inset 0 0 0 1px var(--outline); }
+  .bk-day.selected { background: var(--accent); color: var(--on-accent); font-weight: 700; }
+  .bk-times { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+  .bk-hint { margin: 0; font-size: 14px; color: var(--muted); }
+  .bk-fields { display: flex; flex-wrap: wrap; gap: 14px; }
+  .bk-field { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; }
+  .bk-field.full { flex-basis: 100%; }
+  .bk-field input, .bk-field textarea { width: 100%; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--outline); background: var(--cell); color: var(--text); font: inherit; font-size: 16px; }
+  .bk-field textarea { min-height: 84px; resize: vertical; }
+  .bk-field input:focus, .bk-field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .bk-summary { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: var(--cell); margin-top: 20px; }
+  .bk-summary dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: 14px; }
+  .bk-summary dt { color: var(--muted); }
+  .bk-summary dd { margin: 0; }
+  .bk-error { margin: 12px 0 0; font-size: 14px; font-weight: 500; color: #E5484D; }
+  .bk-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 16px 28px 22px; border-top: 1px solid var(--line); background: var(--card); }
+  .bk-total small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .bk-total strong { font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 800; font-size: 26px; }
+  .bk-total span { display: block; font-size: 12px; color: var(--muted); }
+  .bk-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-left: auto; }
+  .bk-send { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .bk-done { display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 16px 18px; border-radius: 16px; background: color-mix(in srgb, #2FB36B 14%, transparent); color: #2FB36B; }
+  .bk-done div { display: flex; flex-direction: column; gap: 2px; color: var(--text); }
+  .bk-done strong { font-size: 16px; }
+  .bk-done span { font-size: 14px; color: var(--body); }
+  .bk-note { margin: 14px 0 0; font-size: 13px; line-height: 1.55; color: var(--muted); }
+  .bk-body :focus-visible, .bk-foot :focus-visible, .bk-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 560px) {
+    .bk-head, .bk-steps, .bk-body, .bk-foot { padding-inline: 18px; }
+    .bk-actions { width: 100%; }
+    .bk-actions .btn { flex: 1; justify-content: center; }
+  }
+
+
+  /* ---------- Subpages (About, Services) ---------- */
+  .about-hero { position: relative; overflow: hidden; padding-bottom: clamp(48px, 6vw, 80px); }
+  .story-row { display: flex; flex-wrap: wrap; gap: 32px 64px; margin-bottom: 48px; }
+  .story-copy { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .story-text { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+  .story-text p { margin: 0; font-size: 17px; line-height: 1.7; color: var(--body); }
+  .story-row + .container .stats { margin-bottom: 0; }
+  .values { display: flex; flex-wrap: wrap; gap: 20px; }
+  .value { flex: 1 1 250px; min-width: 0; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+  .value h3 { margin: 6px 0 0; font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 700; font-size: 20px; }
+  .value p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--body); }
+  .offer-list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .offer { display: flex; align-items: baseline; gap: 28px; padding: 26px 4px; border-bottom: 1px solid var(--line); color: var(--text); text-decoration: none; transition: padding .2s; }
+  .offer:hover { padding-left: 14px; }
+  .offer b { font-family: 'Archivo', sans-serif; font-size: 15px; font-weight: 700; color: var(--kicker); min-width: 28px; }
+  .offer h3 { margin: 0 0 6px; font-family: 'Archivo', sans-serif; font-stretch: 112%; font-weight: 700; font-size: clamp(20px, 2.4vw, 26px); }
+  .offer p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted); }
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 20px; }
+  .steps li { flex: 1 1 240px; min-width: 0; padding: 28px; border-radius: 20px; background: var(--cell); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; }
+  .steps span { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; font-family: 'Archivo', sans-serif; font-weight: 800; }
+  .steps h3 { margin: 8px 0 0; font-size: 18px; font-weight: 700; }
+  .steps p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--body); }
+  .svc-intro { position: relative; display: flex; flex-direction: column; gap: 24px; max-width: 860px; padding-top: clamp(48px, 8vw, 96px); }
+  .svc-intro h1 { margin: 0; }
+  .svc-jump { display: flex; flex-wrap: wrap; gap: 10px; }
+  .svc-jump a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--outline); background: var(--card); color: var(--text); font-size: 14px; font-weight: 500; text-decoration: none; }
+  .svc-jump a:hover { border-color: var(--accent); color: var(--kicker); }
+  .svc-section { scroll-margin-top: 80px; }
+  .svc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 40px 64px; }
+  .svc-row.reverse { flex-direction: row-reverse; }
+  .svc-copy { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; }
+  .svc-lead { margin: 0; font-size: 17px; line-height: 1.7; color: var(--body); }
+  .svc-items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .svc-items li { display: flex; flex-direction: column; gap: 4px; padding: 14px 0 14px 22px; border-bottom: 1px solid var(--line); position: relative; }
+  .svc-items li::before { content: ""; position: absolute; left: 2px; top: 22px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .svc-items b { font-size: 16px; font-weight: 600; }
+  .svc-items span { font-size: 15px; line-height: 1.6; color: var(--muted); }
+  .svc-prices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .svc-prices span { display: inline-flex; gap: 8px; align-items: baseline; padding: 8px 14px; border-radius: 12px; background: var(--cell); border: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .svc-prices b { font-size: 14px; color: var(--text); }
+  .svc-photo { flex: 1 1 380px; min-width: 0; max-width: 520px; margin: 0; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 60px -28px rgba(0,0,0,.5); position: relative; }
+  .svc-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .svc-photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 6px; background: var(--accent); }
+  .svc-panel { flex: 1 1 380px; min-width: 0; max-width: 520px; aspect-ratio: 4 / 5; border-radius: 22px; background: #15181D; color: var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 40px; text-align: center; position: relative; overflow: hidden; }
+  .svc-panel::before { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: var(--accent); opacity: .12; filter: blur(70px); }
+  .svc-panel svg, .svc-panel p { position: relative; }
+  .svc-panel p { margin: 0; max-width: 280px; font-size: 16px; line-height: 1.6; color: #C9CDD4; }
+  .price-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: var(--card); }
+  .price-table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px; }
+  .price-table th, .price-table td { padding: 18px 22px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .price-table thead th { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: var(--cell); }
+  .price-table tbody th { font-weight: 600; }
+  .price-table td { color: var(--body); }
+  .price-table td:last-child { white-space: nowrap; font-weight: 600; color: var(--text); }
+  .price-table tbody tr:last-child > * { border-bottom: 0; }
+  .faq-row { display: flex; flex-wrap: wrap; gap: 32px 64px; }
+  .faq-copy { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .faq { flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .faq details { border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 22px; font-size: 16px; font-weight: 600; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 22px; font-weight: 400; color: var(--kicker); flex: none; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 16px; }
+  .faq details p { margin: 0; padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--body); }
+  .svc-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; padding: clamp(28px, 5vw, 56px); border-radius: 28px; background: #15181D; color: #FFFFFF; position: relative; overflow: hidden; }
+  .svc-cta::before { content: ""; position: absolute; right: -80px; top: -80px; width: 360px; height: 360px; border-radius: 50%; background: var(--accent); opacity: .18; filter: blur(80px); }
+  .svc-cta > * { position: relative; }
+  .svc-cta > div:first-child { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .svc-cta h2 { margin: 0; color: #FFFFFF; }
+  .svc-cta p { margin: 0; font-size: 17px; line-height: 1.6; color: #C9CDD4; }
+  .svc-cta .btn-ghost { color: #FFFFFF; border-color: rgba(255,255,255,.3); }
+  @media (max-width: 760px) { .svc-row.reverse { flex-direction: row; } .svc-photo, .svc-panel { max-width: none; aspect-ratio: 4 / 3; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Shared SVG defs: paint shading + wheel -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+    </linearGradient>
+    <linearGradient id="shadeStrong" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.5"/>
+    </linearGradient>
+    <radialGradient id="floorGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <g id="wheel">
+      <circle r="24" fill="#0E1116"/>
+      <circle r="14" fill="#BFC5CE"/>
+      <circle r="8" fill="#5B636F"/>
+      <circle r="3" fill="#E7EAEE"/>
+    </g>
+  </defs>
+</svg>
+
+<!-- ================= HEADER ================= -->
+<header class="site">
+  <div class="container nav-row">
+    <a href="index.html" class="brand" aria-label="Mr. Klin — home">
+      <!-- Replace this badge with your logo: <img src="images/logo.png" alt="Mr. Klin" height="44"> -->
+      <div class="brand-mark" aria-hidden="true">MK</div>
+      <div class="brand-name">
+        <strong>MR. KLIN</strong>
+        <span>Trading &amp; Services Corp.</span>
+      </div>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="services.html" class="active" aria-current="page">Services</a>
+      <a href="index.html#work">Our Work</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="index.html#book" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Book a service
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ================= SERVICES HERO ================= -->
+<section class="hero about-hero bg-base">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="svc-intro">
+      <div class="pill"><span class="dot"></span>Our services</div>
+      <h1 class="display">Everything your car needs, under one roof.</h1>
+      <p class="lead">Cleaning, protection, repairs and upgrades, all done by one team at our shop in Bagumbayan, Taguig. Some services can also come to your home or office. Pick a service below to see what's included.</p>
+      <nav class="svc-jump" aria-label="Jump to a service">
+        <a href="#detailing">Auto Detailing</a>
+        <a href="#ceramic">Nano Ceramic &amp; Protection</a>
+        <a href="#mechanical">Mechanical Services</a>
+        <a href="#body">Body Repair &amp; Paint</a>
+        <a href="#accessories">Car Accessories</a>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 AUTO DETAILING ================= -->
+<section id="detailing" class="section bg-alt svc-section">
+  <div class="container svc-row">
+    <div class="svc-copy">
+      <span class="kicker">01 · Auto Detailing</span>
+      <h2 class="title display">Bring back that showroom feel.</h2>
+      <p class="svc-lead">A deep clean for every part of your car, inside and out. We take out dirt and stains, bring back the shine, and protect the surfaces so your car stays fresh for longer.</p>
+      <ul class="svc-items">
+        <li><b>Interior detailing</b><span>A full cabin clean: seats, carpets, dashboard, panels and glass. Choose carpet dismantle for a deep clean with the seats and carpets taken out.</span></li>
+        <li><b>Exterior detailing</b><span>A full exterior treatment for paint, trims, glass and wheels to bring back depth and gloss.</span></li>
+        <li><b>Engine detailing</b><span>A careful engine bay wash and dressing that leaves it clean and easier to check.</span></li>
+        <li><b>Auto Spa Package</b><span>Our quick refresh: wash, asphalt removal, machine wax, engine wash and hyperdressing.</span></li>
+      </ul>
+      <div class="svc-prices">
+        <span>Auto Spa <b>₱2,250–2,930</b></span>
+        <span>Interior <b>₱4,000–6,000</b></span>
+        <span>With carpet dismantle <b>₱5,500–7,500</b></span>
+        <span>Exterior <b>₱4,000–9,000</b></span>
+      </div>
+      <div class="cta-row"><a href="index.html#book" class="btn btn-primary">Book detailing</a><a href="#prices" class="btn btn-ghost">See price guide</a></div>
+    </div>
+    <figure class="svc-photo"><img src="images/hero.jpg" width="1600" height="893" alt="Detailers machine-polishing and hand-drying a black sedan" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ================= 02 NANO CERAMIC ================= -->
+<section id="ceramic" class="section bg-base svc-section">
+  <div class="container svc-row reverse">
+    <div class="svc-copy">
+      <span class="kicker">02 · Nano Ceramic &amp; Protection</span>
+      <h2 class="title display">A glass-hard shield for your paint.</h2>
+      <p class="svc-lead">Keep your car looking new for longer. Our protection services guard your paint, glass and cabin against the sun, rain and everyday road grime.</p>
+      <ul class="svc-items">
+        <li><b>Nano ceramic coating</b><span>Bonds to your paint to form a lasting protective layer, with deeper gloss and easier washes. It helps protect against UV, acid rain, bird droppings and fine scratches.</span></li>
+        <li><b>Tint film installation</b><span>Window tint that cuts glare and heat and adds privacy to your cabin.</span></li>
+        <li><b>PPF protection</b><span>Clear paint protection film for areas that take the most hits, like the hood, bumpers and mirrors.</span></li>
+        <li><b>Underchassis &amp; rustproofing</b><span>Rust and corrosion prevention that protects your chassis from water, mud and road salt.</span></li>
+      </ul>
+      <div class="svc-prices">
+        <span>Underchassis <b>from ₱1,800</b></span>
+        <span>Coating, tint &amp; PPF <b>Quoted after inspection</b></span>
+      </div>
+      <div class="cta-row"><a href="index.html#book" class="btn btn-primary">Get a coating quote</a></div>
+    </div>
+    <figure class="svc-photo"><img src="images/work/work-1.jpg" width="560" height="700" alt="Bronze SUV with a mirror-gloss finish after detailing" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ================= 03 MECHANICAL ================= -->
+<section id="mechanical" class="section bg-alt svc-section">
+  <div class="container svc-row">
+    <div class="svc-copy">
+      <span class="kicker">03 · Mechanical Services</span>
+      <h2 class="title display">Keep it running smoothly.</h2>
+      <p class="svc-lead">Regular care keeps small problems from turning into big repairs. We'll check your car, explain what it needs, and agree the work with you before we start.</p>
+      <ul class="svc-items">
+        <li><b>Preventive maintenance (PMS)</b><span>Scheduled service to keep your engine and parts in good shape and your car reliable day to day.</span></li>
+        <li><b>Battery services</b><span>Battery checks and replacement so you're never stuck with a car that won't start.</span></li>
+        <li><b>Tire services</b><span>Tire checks and replacement for a safer, smoother ride.</span></li>
+        <li><b>Aircon service</b><span>Aircon check-up, cleaning and recharge to keep your cabin cool.</span></li>
+      </ul>
+      <div class="svc-prices"><span>All mechanical work <b>Quoted after inspection</b></span></div>
+      <div class="cta-row"><a href="index.html#book" class="btn btn-primary">Book a check-up</a></div>
+    </div>
+    <figure class="svc-photo"><img src="images/work/work-3.jpg" width="560" height="700" alt="Technician's gauges connected to an SUV's aircon system" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ================= 04 BODY REPAIR ================= -->
+<section id="body" class="section bg-base svc-section">
+  <div class="container svc-row reverse">
+    <div class="svc-copy">
+      <span class="kicker">04 · Body Repair &amp; Paint</span>
+      <h2 class="title display">Dents and scratches, gone.</h2>
+      <p class="svc-lead">From small parking dings to full panels, we repair the damage and match the paint so your car looks whole again.</p>
+      <ul class="svc-items">
+        <li><b>Dent repair</b><span>We straighten dents and dings on doors, fenders, hoods and bumpers.</span></li>
+        <li><b>Scratch removal</b><span>We remove or reduce scratches and swirl marks to bring back a smooth, even finish.</span></li>
+        <li><b>Professional painting</b><span>Spot repairs, panel repainting and color matching for a clean, factory-like look.</span></li>
+      </ul>
+      <div class="svc-prices"><span>Body &amp; paint <b>Quoted after inspection</b></span></div>
+      <div class="cta-row"><a href="index.html#book" class="btn btn-primary">Get a repair quote</a></div>
+    </div>
+    <div class="svc-panel" aria-hidden="true">
+      <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h7M14 4l6 6-9 9H5v-6zM12 6l6 6"/></svg>
+      <p>Send us a photo of the damage on Messenger for a faster quote.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 ACCESSORIES ================= -->
+<section id="accessories" class="section bg-alt svc-section">
+  <div class="container svc-row">
+    <div class="svc-copy">
+      <span class="kicker">05 · Car Accessories</span>
+      <h2 class="title display">Upgrade your ride.</h2>
+      <p class="svc-lead">Make your car more comfortable, more secure and more yours, with careful installation and wiring done by our team.</p>
+      <ul class="svc-items">
+        <li><b>Upholstery</b><span>Seat and interior upholstery to refresh worn or stained cabins.</span></li>
+        <li><b>Sounds &amp; lights</b><span>Audio upgrades and lighting installation, wired neatly and safely.</span></li>
+        <li><b>Central lock &amp; dashcam</b><span>Security and peace of mind with central locking and dashcam installation.</span></li>
+        <li><b>Electrical &amp; wiring repair</b><span>We find and fix wiring problems behind the dashboard and around the car.</span></li>
+      </ul>
+      <div class="svc-prices"><span>Accessories &amp; installation <b>Quoted after inspection</b></span></div>
+      <div class="cta-row"><a href="index.html#book" class="btn btn-primary">Ask about an upgrade</a></div>
+    </div>
+    <figure class="svc-photo"><img src="images/work/work-4.jpg" width="560" height="700" alt="Van interior with the dashboard removed for wiring repair" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- ================= PRICE GUIDE ================= -->
+<section id="prices" class="section bg-base">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="kicker">Price guide</span>
+        <h2 class="title display">Detailing prices by vehicle size.</h2>
+      </div>
+      <p>Prices may vary by vehicle and service. Deep shampooing or heavy dirt may cost extra, and we'll always tell you before we start.</p>
+    </div>
+    <div class="price-table-wrap">
+      <table class="price-table">
+        <thead><tr><th scope="col">Service</th><th scope="col">What's included</th><th scope="col">Price</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Auto Spa Package</th><td>Wash, asphalt removal, machine wax, engine wash, hyperdressing</td><td>₱2,250–2,930</td></tr>
+          <tr><th scope="row">Interior Detail</th><td>Full cabin clean, from sedan / hatchback to van</td><td>₱4,000–6,000</td></tr>
+          <tr><th scope="row">Interior + carpet dismantle</th><td>Seats and carpets out for a deep clean</td><td>₱5,500–7,500</td></tr>
+          <tr><th scope="row">Exterior Detail</th><td>Full exterior treatment, depending on vehicle</td><td>₱4,000–9,000</td></tr>
+          <tr><th scope="row">Underchassis &amp; rustproofing</th><td>Rust &amp; corrosion prevention, chassis protection</td><td>from ₱1,800</td></tr>
+          <tr><th scope="row">Ceramic, tint, PPF, mechanical, body &amp; accessories</th><td>Depends on your vehicle and its condition</td><td>Quoted after inspection</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section bg-alt">
+  <div class="container faq-row">
+    <div class="faq-copy">
+      <span class="kicker">Good to know</span>
+      <h2 class="title display">Questions we often get.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>How do you price your services?</summary><p>Detailing is priced by vehicle size, so a hatchback costs less than a van. Coating, mechanical, body and accessory work depends on your car's condition, so we give you a quote after a quick inspection.</p></details>
+      <details><summary>Can you come to my home or office?</summary><p>Yes. Our mobile team can do detailing at your home or office. Choose "Home / office service" when you book online and tell us your address.</p></details>
+      <details><summary>How do I book?</summary><p>Book online with our estimate and calendar, or call 0917-880-5755. We'll text or call you to confirm your slot and price.</p></details>
+      <details><summary>Can I reach you on Sundays?</summary><p>Yes. Call our Sunday line at 0933-866-7408.</p></details>
+      <details><summary>Will the price change after I book?</summary><p>The online price is an estimate. If your car needs extra work, like deep shampooing for heavy stains, we'll tell you and agree on it with you before doing it.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section bg-base">
+  <div class="container">
+    <div class="svc-cta">
+      <div>
+        <h2 class="title display">Not sure what your car needs?</h2>
+        <p>Tell us about your car and we'll recommend the right service and give you an estimate.</p>
+      </div>
+      <div class="cta-row">
+        <a href="index.html#book" class="btn btn-primary btn-lg">Get a free estimate</a>
+        <a href="tel:09178805755" class="btn btn-ghost btn-lg">Call 0917-880-5755</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="container footer-main">
+    <div class="footer-brand">
+      <a href="index.html" class="brand" aria-label="Mr. Klin — home">
+        <div class="brand-mark" aria-hidden="true">MK</div>
+        <div class="brand-name">
+          <strong>MR. KLIN</strong>
+          <span>Trading &amp; Services Corp.</span>
+        </div>
+      </a>
+      <p>Your one-stop shop in the South for auto detailing, nano ceramic coating, mechanical services, body repair and paint.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/mrklintradingandservicescorp" target="_blank" rel="noopener" aria-label="Mr. Klin on Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/mr.klintrading" target="_blank" rel="noopener" aria-label="Mr. Klin on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <nav class="footer-col" aria-label="Footer">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="index.html#work">Our Work</a></li>
+        <li><a href="index.html#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html#detailing">Auto Detailing</a></li>
+        <li><a href="services.html#ceramic">Nano Ceramic Coating</a></li>
+        <li><a href="services.html#mechanical">Mechanical Services</a></li>
+        <li><a href="services.html#body">Body Repair &amp; Paint</a></li>
+        <li><a href="services.html#accessories">Car Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <ul>
+        <li><address>74 M.L Quezon St., Bagumbayan, Taguig City</address></li>
+        <li><a href="tel:09178805755">0917-880-5755</a></li>
+        <li><a href="tel:0288072457">02-8807-2457</a></li>
+        <li><a href="tel:09338667408">0933-866-7408 (Sundays)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© <span id="year">2026</span> Mr. Klin Trading and Services Corp. All rights reserved.</span>
+      <span>Powered by: <a href="https://multiplytalents.io/" target="_blank" rel="noopener">Multiply Talents</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dark / light mode toggle (remembers the visitor's choice)
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    function sync() {
+      var label = root.getAttribute('data-theme') === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('title', label);
+    }
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('mrklin-theme', next); } catch (e) {}
+      sync();
+    });
+    sync();
+
+    // Highlight the nav link for the section on screen
+    var links = document.querySelectorAll('nav.main a');
+    var map = { home: 0, about: 0, services: 2, packages: 2, ceramic: 2, work: 3, contact: 4 };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && map[e.target.id] !== undefined) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            links[map[e.target.id]].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

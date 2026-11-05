@@ -167,6 +167,8 @@
   .service h3 { font-family: 'Archivo', sans-serif; font-stretch: 108%; font-weight: 700; font-size: 20px; line-height: 1.2; }
   .service ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: var(--body); }
   .service li { display: flex; align-items: center; gap: 10px; }
+  .service-more { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--kicker); text-decoration: none; }
+  .service-more:hover { text-decoration: underline; }
   .service li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex: none; }
 
   /* ---------- Packages ---------- */
@@ -362,7 +364,7 @@
     <nav class="main" aria-label="Main">
       <a href="#home" class="active">Home</a>
       <a href="about.html">About us</a>
-      <a href="#services">Services</a>
+      <a href="services.html">Services</a>
       <a href="#work">Our Work</a>
       <a href="#contact">Contact Us</a>
     </nav>
@@ -482,32 +484,38 @@
         <span class="kicker">Our services</span>
         <h2 class="title display">Everything your car needs, under one roof.</h2>
       </div>
+      <a href="services.html" class="btn btn-ghost">View all services</a>
     </div>
     <div class="grid">
       <article class="service">
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
         <h3>Auto Detailing</h3>
         <ul><li>Interior</li><li>Exterior</li><li>Engine</li></ul>
+        <a class="service-more" href="services.html#detailing">Learn more <span aria-hidden="true">&rarr;</span></a>
       </article>
       <article class="service">
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3zM9 12l2 2 4-4"/></svg></div>
         <h3>Nano Ceramic</h3>
         <ul><li>Tint film installation</li><li>Nano ceramic coating</li><li>PPF protection</li></ul>
+        <a class="service-more" href="services.html#ceramic">Learn more <span aria-hidden="true">&rarr;</span></a>
       </article>
       <article class="service">
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8 6.2 21l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div>
         <h3>Mechanical Services</h3>
         <ul><li>Preventive maintenance (PMS)</li><li>Battery services</li><li>Tire services</li></ul>
+        <a class="service-more" href="services.html#mechanical">Learn more <span aria-hidden="true">&rarr;</span></a>
       </article>
       <article class="service">
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h7M14 4l6 6-9 9H5v-6zM12 6l6 6"/></svg></div>
         <h3>Body Repair &amp; Paint</h3>
         <ul><li>Dent repair</li><li>Scratch removal</li><li>Professional painting</li></ul>
+        <a class="service-more" href="services.html#body">Learn more <span aria-hidden="true">&rarr;</span></a>
       </article>
       <article class="service">
         <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9a4 4 0 0 1 0 6M19.5 6.5a8 8 0 0 1 0 11"/></svg></div>
         <h3>Car Accessories</h3>
         <ul><li>Upholstery</li><li>Sounds &amp; lights</li><li>Central lock &amp; dashcam</li></ul>
+        <a class="service-more" href="services.html#accessories">Learn more <span aria-hidden="true">&rarr;</span></a>
       </article>
     </div>
   </div>
@@ -696,11 +704,11 @@
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#services">Auto Detailing</a></li>
-        <li><a href="#ceramic">Nano Ceramic Coating</a></li>
-        <li><a href="#services">Mechanical Services</a></li>
-        <li><a href="#services">Body Repair &amp; Paint</a></li>
-        <li><a href="#services">Car Accessories</a></li>
+        <li><a href="services.html#detailing">Auto Detailing</a></li>
+        <li><a href="services.html#ceramic">Nano Ceramic Coating</a></li>
+        <li><a href="services.html#mechanical">Mechanical Services</a></li>
+        <li><a href="services.html#body">Body Repair &amp; Paint</a></li>
+        <li><a href="services.html#accessories">Car Accessories</a></li>
       </ul>
     </div>
     <div class="footer-col">
