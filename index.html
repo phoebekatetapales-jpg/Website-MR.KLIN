@@ -320,6 +320,73 @@
     .bk-actions .btn { flex: 1; justify-content: center; }
   }
 
+  /* ---------- Mobile menu (tablets and phones) ---------- */
+  .menu-toggle {
+    display: none; width: 44px; height: 44px; flex: none; padding: 0; border-radius: 999px;
+    border: 1px solid var(--outline); background: var(--card); color: var(--text);
+    align-items: center; justify-content: center; cursor: pointer;
+  }
+  .menu-toggle .icon-close { display: none; }
+  .menu-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (max-width: 900px) {
+    .nav-row { flex-wrap: nowrap; gap: 10px; }
+    .menu-toggle { display: inline-flex; }
+    nav.main {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding: 6px clamp(16px, 4vw, 48px) 18px; background: var(--base);
+      border-bottom: 1px solid var(--line); box-shadow: 0 24px 32px -24px rgba(0,0,0,.45);
+    }
+    header.site.nav-open nav.main { display: flex; }
+    nav.main a { padding: 15px 2px; font-size: 17px; border-bottom: 1px solid var(--line); }
+    nav.main a:last-child { border-bottom: 0; }
+    nav.main a.active { color: var(--kicker); font-weight: 600; }
+    header.site.nav-open .menu-toggle .icon-menu { display: none; }
+    header.site.nav-open .menu-toggle .icon-close { display: block; }
+  }
+
+  /* ---------- Phones ---------- */
+  @media (max-width: 640px) {
+    .section { padding-block: 56px; }
+    .section-head { margin-bottom: 28px; gap: 16px; }
+    .section-head > div { gap: 12px; }
+    .brand-logo { height: 52px; padding: 2px 6px; border-radius: 12px; }
+    .nav-actions { gap: 8px; }
+    .nav-actions .btn { min-height: 44px; padding: 0 14px; font-size: 14px; gap: 8px; }
+    .hide-sm { display: none; }
+    .cta-row .btn { flex: 1 1 auto; justify-content: center; }
+    .btn-lg { min-height: 50px; padding: 0 20px; font-size: 15px; }
+    .hero-row { gap: 32px; padding-top: 36px; }
+    .hero-copy { gap: 22px; }
+    .hero p.lead { font-size: 16px; }
+    .stat { flex: 1 1 calc(50% - 1px); padding: 18px; }
+    .stat strong { font-size: 24px; }
+    .grid { gap: 12px; }
+    .car-card { flex: 1 1 calc(50% - 6px); border-radius: 16px; }
+    .car-info { padding: 12px 14px 14px; }
+    .car-info h3 { font-size: 15px; }
+    .car-info span { font-size: 12px; }
+    .car-info svg { display: none; }
+    .service { padding: 22px; gap: 16px; }
+    .package { padding: 26px 22px; }
+    .benefit { flex: 1 1 calc(50% - 6px); padding: 12px; font-size: 13px; gap: 8px; }
+    .ceramic-row { gap: 32px; }
+    .gallery { gap: 10px; }
+    .gallery figure { flex: 1 1 calc(50% - 5px); border-radius: 14px; }
+    .gallery figure:not(.placeholder) figcaption { padding: 28px 12px 10px; font-size: 12px; }
+    .contact-row { gap: 32px; }
+    .contact-cards { gap: 12px; }
+    .contact-card { flex: 1 1 calc(50% - 6px); padding: 18px; }
+    .contact-card a.num, .contact-card address { font-size: 15px; }
+    .contact-card:last-child { flex-basis: 100%; }
+    .footer-main { padding-block: 48px 36px; gap: 32px 24px; }
+    .footer-brand { flex-basis: 100%; }
+    .footer-col { flex: 1 1 calc(50% - 12px); }
+    .footer-col:last-child { flex-basis: 100%; }
+    .footer-bottom .container { flex-direction: column; align-items: flex-start; }
+    .photo-credits { font-size: 11px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; }
@@ -360,7 +427,7 @@
     <a href="#home" class="brand" aria-label="Mr. Klin — home">
       <img class="brand-logo" src="images/logo.png" width="450" height="246" alt="Mr. Klin Trading &amp; Services Corporation">
     </a>
-    <nav class="main" aria-label="Main">
+    <nav class="main" id="mainNav" aria-label="Main">
       <a href="#home" class="active">Home</a>
       <a href="about.html">About us</a>
       <a href="services.html">Services</a>
@@ -374,7 +441,11 @@
       </button>
       <button type="button" class="btn btn-primary" data-book>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        Book a service
+        <span>Book<span class="hide-sm"> a service</span></span>
+      </button>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
@@ -746,6 +817,19 @@
       sync();
     });
     sync();
+
+    // Mobile menu: the hamburger opens the nav as a drop-down panel
+    var header = document.querySelector('header.site');
+    var menuBtn = document.getElementById('menuToggle');
+    function setMenu(open) {
+      header.classList.toggle('nav-open', open);
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    menuBtn.addEventListener('click', function () { setMenu(!header.classList.contains('nav-open')); });
+    document.querySelectorAll('#mainNav a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && header.classList.contains('nav-open')) { setMenu(false); menuBtn.focus(); } });
+    document.addEventListener('click', function (e) { if (!header.contains(e.target)) setMenu(false); });
 
     // Highlight the nav link for the section on screen
     var links = document.querySelectorAll('nav.main a');
